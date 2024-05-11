@@ -32,19 +32,22 @@ resources = {
     "coffee": 100,
 }
 
-user = input("What would you like? (espresso/latte/cappuccino):")
+user = ""
 
 
-def type_of_coffee(user):
+def type_of_coffee():
+    user = input("What would you like? (espresso/latte/cappuccino):")
     if user == "report":
         return True
-    else:
+    elif user=="espresso" or user=="latte" or user=="cappuccino":
         for i in resources:
             if resources[i] > MENU[user]["ingredients"][i]:
                 return user
             elif resources[i] < MENU[user]["ingredients"][i]:
                 return f"Sorry there is not enough {i}."
                 break
+    else:
+        quit()
 
 
 profit = 0
@@ -75,15 +78,14 @@ def check():
             print(f"Here is your {user_input}!")
             for i in MENU[user_input]["ingredients"]:
                 resources[i] = resources[i] - MENU[user_input]["ingredients"][i]
-
+        check()
     elif user_input == True:
         resources["Money"] = total
         for i, j in resources.items():
             print(f"{i}: {j}")
-
+        check()
     else:
         print(user_input)
+        check()
 
-
-while user != "end":
-    check()
+check()
