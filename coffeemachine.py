@@ -78,14 +78,12 @@ def check():
             print(f"Here is your {user_input}!")
             for i in MENU[user_input]["ingredients"]:
                 resources[i] = resources[i] - MENU[user_input]["ingredients"][i]
-        check()
     elif user_input == True:
         resources["Money"] = total
         for i, j in resources.items():
             print(f"{i}: {j}")
-        check()
     else:
         print(user_input)
-        check()
+    check()
 
 check()
